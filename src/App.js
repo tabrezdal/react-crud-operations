@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import NoPageFound from './pages/NoPageFound';
+import Add from './pages/Add';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="*" element={<NoPageFound />} />
+        <Route path="users/add" element={<Add />} />
       </Routes>
       <Footer />
     </div>

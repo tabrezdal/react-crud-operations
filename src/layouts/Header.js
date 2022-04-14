@@ -22,6 +22,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
+                <Link className="btn btn-dark" to="/users/add">Add User</Link>
             </nav>
         </div>
     )

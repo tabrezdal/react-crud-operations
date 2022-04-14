@@ -1,0 +1,10 @@
+.action-links{
+    text-decoration: none;
+    color: white;
+    transition: all ease-in-out 0.3s;
+}
+
+.action-links:hover{
+    text-decoration: none;
+    color: rgb(214, 214, 214);
+}
