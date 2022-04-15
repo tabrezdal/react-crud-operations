@@ -1,8 +1,10 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect} from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 
-const Add = () => {
+const Edit = () => {
+
+  const {id} = useParams();
 
   let navigate = useNavigate();
 
@@ -17,17 +19,28 @@ const Add = () => {
     setUser({...user, [e.target.name] : e.target.value})
   }
 
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:3003/users/${id}`);
+    console.log(result);
+    setUser(result.data)
+  }
 
-  const addData = async e => {
+  useEffect(() => {
+    loadUser();
+  }, [])
+  
+
+
+  const updateData = async e => {
     e.preventDefault();
-    await axios.post("http://localhost:3003/users", user);
+    await axios.put(`http://localhost:3003/users/${id}`, user);
     navigate("/");
     }
 
   return (
     <div className="container mt-5 w-50">
-      <h1>Add User</h1>
-      <form onSubmit={e => addData(e)}>
+      <h1>Edit User</h1>
+      <form onSubmit={e => updateData(e)}>
         <div className="form-group">
           <label htmlFor="exampleInputName1">Name</label>
           <input type="text" className="form-control" id="exampleInputWebsite1" placeholder="EnterName" name="name" value={user.name} onChange={onChange}/>
@@ -41,10 +54,10 @@ const Add = () => {
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={user.email} placeholder="Enter email" onChange={onChange} />
           <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
-        <button type="submit" className="btn btn-dark">Submit</button>
+        <button type="submit" className="btn btn-dark">Update</button>
       </form>
     </div>
   )
 }
 
-export default Add
+export default Edit

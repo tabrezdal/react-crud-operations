@@ -8,6 +8,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import NoPageFound from './pages/NoPageFound';
 import Add from './pages/Add';
+import Edit from './pages/Edit';
+import Users from './pages/Users'
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="*" element={<NoPageFound />} />
         <Route path="users/add" element={<Add />} />
+        <Route path="user/edit/:id" element={<Edit />} />
+        <Route path="user/:id" element={<Users />} />
       </Routes>
       <Footer />
     </div>
